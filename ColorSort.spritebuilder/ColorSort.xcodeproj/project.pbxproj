@@ -93,7 +93,11 @@
 		BC5399DA1A44DCC90063F482 /* GLActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D51A44DCC90063F482 /* GLActivityKit.framework */; };
 		BC5399DB1A44DCC90063F482 /* JavaFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D61A44DCC90063F482 /* JavaFoundation.framework */; };
 		BC5399DC1A44DCC90063F482 /* JavaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D71A44DCC90063F482 /* JavaKit.framework */; };
-		C6DBF6611B6FE662009F6634 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6601B6FE662009F6634 /* Gameplay.swift */; };
+		C63E6B351B7D45DD00460157 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B341B7D45DD00460157 /* Gameplay.swift */; };
+		C63E6B451B7DCE1400460157 /* iAdHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B441B7DCE1400460157 /* iAdHandler.swift */; };
+		C63E6B471B7DCE2B00460157 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63E6B461B7DCE2B00460157 /* iAd.framework */; };
+		C63E6B511B7DEA1800460157 /* GamestateSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */; };
+		C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B521B7E497800460157 /* PausedScreen.swift */; };
 		C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6661B6FE6E8009F6634 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
@@ -212,7 +216,11 @@
 		BC5399D51A44DCC90063F482 /* GLActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLActivityKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/GLActivityKit.framework"; sourceTree = "<group>"; };
 		BC5399D61A44DCC90063F482 /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
 		BC5399D71A44DCC90063F482 /* JavaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaKit.framework"; sourceTree = "<group>"; };
-		C6DBF6601B6FE662009F6634 /* Gameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gameplay.swift; sourceTree = "<group>"; };
+		C63E6B341B7D45DD00460157 /* Gameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gameplay.swift; sourceTree = "<group>"; };
+		C63E6B441B7DCE1400460157 /* iAdHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iAdHandler.swift; sourceTree = "<group>"; };
+		C63E6B461B7DCE2B00460157 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamestateSingleton.swift; sourceTree = "<group>"; };
+		C63E6B521B7E497800460157 /* PausedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedScreen.swift; sourceTree = "<group>"; };
 		C6DBF6661B6FE6E8009F6634 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C63E6B471B7DCE2B00460157 /* iAd.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -440,7 +449,10 @@
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
-				C6DBF6601B6FE662009F6634 /* Gameplay.swift */,
+				C63E6B341B7D45DD00460157 /* Gameplay.swift */,
+				C63E6B521B7E497800460157 /* PausedScreen.swift */,
+				C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */,
+				C63E6B441B7DCE1400460157 /* iAdHandler.swift */,
 				C6DBF6661B6FE6E8009F6634 /* Colors.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
@@ -493,6 +505,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C63E6B461B7DCE2B00460157 /* iAd.framework */,
 				BC5399D31A44DCC90063F482 /* AndroidKit.framework */,
 				BC5399D41A44DCC90063F482 /* CoreJava.framework */,
 				BC5399D51A44DCC90063F482 /* GLActivityKit.framework */,
@@ -820,9 +833,12 @@
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
 				C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */,
-				C6DBF6611B6FE662009F6634 /* Gameplay.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				C63E6B511B7DEA1800460157 /* GamestateSingleton.swift in Sources */,
+				C63E6B351B7D45DD00460157 /* Gameplay.swift in Sources */,
+				C63E6B451B7DCE1400460157 /* iAdHandler.swift in Sources */,
+				C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

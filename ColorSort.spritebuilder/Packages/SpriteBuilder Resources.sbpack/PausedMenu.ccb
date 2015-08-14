@@ -415,7 +415,7 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
+							<string>leaderboard</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -472,7 +472,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/GrayButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -483,7 +483,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/GrayButtonPressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -507,7 +507,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string></string>
 						</array>
 					</dict>
 					<dict>
@@ -526,7 +526,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/GrayButtonPressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -543,7 +543,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>Chalkduster</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -552,7 +552,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>18</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -617,7 +617,7 @@
 							<real>0.0</real>
 							<real>0.0</real>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.52999997138977051</real>
 						</array>
 					</dict>
 					<dict>
@@ -798,7 +798,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/GrayButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -809,7 +809,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/GrayButtonPressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -833,7 +833,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string></string>
 						</array>
 					</dict>
 					<dict>
@@ -852,7 +852,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/GrayButtonPressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -869,7 +869,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>Chalkduster</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -878,7 +878,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>18</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -943,7 +943,7 @@
 							<real>0.0</real>
 							<real>0.0</real>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.52999997138977051</real>
 						</array>
 					</dict>
 					<dict>
@@ -1124,7 +1124,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/GrayButton.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1135,7 +1135,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>Art/GrayButtonPressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1159,7 +1159,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string></string>
 						</array>
 					</dict>
 					<dict>
@@ -1178,7 +1178,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>Art/GrayButtonPressed.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1195,7 +1195,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>Chalkduster</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1269,7 +1269,7 @@
 							<real>0.0</real>
 							<real>0.0</real>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.52999997138977051</real>
 						</array>
 					</dict>
 					<dict>
@@ -1394,8 +1394,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

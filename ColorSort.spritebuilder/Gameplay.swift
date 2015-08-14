@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GameKit
 
 class Gameplay: CCScene {
     
@@ -26,6 +27,10 @@ class Gameplay: CCScene {
         }
     }
     var pausedbuttonPressed: Bool = false
+    var new: CCLabelTTF!
+    var shouldShowNewHighScore: Bool = false
+    var gameoverLabelFell: Bool = false
+    weak var highScoreLabel: CCLabelTTF!
     weak var pausedMenu: CCScene!
     weak var pausedButton: CCButton!
     var gameover: Bool = false
@@ -42,6 +47,13 @@ class Gameplay: CCScene {
         didSet {
             scoreLabel.string = "\(score)"
             updateDifficulty()
+            
+            if score > GameStateSingleton.sharedInstance.highscore {
+                GameStateSingleton.sharedInstance.highscore = score
+                GameCenterInteractor.sharedInstance.reportHighScoreToGameCenter(GameStateSingleton.sharedInstance.highscore)
+                highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
+                shouldShowNewHighScore = true
+            }
         }
     }
     
@@ -100,22 +112,22 @@ class Gameplay: CCScene {
     }
     
     func didLoadFromCCB() {
-        iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
-        iAdHandler.sharedInstance.displayBannerAd()
+//        iAdHandler.sharedInstance.displayBannerAd()
         userInteractionEnabled = true
-//        if !GameStateSingleton.sharedInstance.alreadyLoaded {
-//            animationManager.runAnimationsForSequenceNamed("Tutorial")
-//            GameStateSingleton.sharedInstance.alreadyLoaded = true
-//        } else {
-//            tutorialFinished = true
-//        }
+        highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
+        if !GameStateSingleton.sharedInstance.alreadyLoaded {
+            animationManager.runAnimationsForSequenceNamed("Tutorial")
+            GameStateSingleton.sharedInstance.alreadyLoaded = true
+        } else {
+            tutorialFinished = true
+        }
         schedule("spawnColors", interval: CCTime(distanceBetweenColors))
         
     }
     
     override func update(delta: CCTime) {
         for color in colorArray {
-            if color.position.y < CCDirector.sharedDirector().viewSize().height / 12 {
+            if color.position.y < screenWidthPercent * 12 {
                 color.removeFromParent()
                 colorArray.removeAtIndex(find(colorArray, color)!)
                 checkForColor(color)
@@ -124,8 +136,16 @@ class Gameplay: CCScene {
         
         if gameover {
             restartButton.visible = true
+            pausedButton.visible = false
             for color in colorArray {
                 color.removeFromParent()
+            }
+            if !gameoverLabelFell {
+                animationManager.runAnimationsForSequenceNamed("Game Over")
+                gameoverLabelFell = true
+            }
+            if shouldShowNewHighScore {
+                new.visible = true
             }
         }
     }
@@ -287,6 +307,36 @@ class Gameplay: CCScene {
     func startGame() {
         tutorialFinished = true
     }
+    func home() {
+        CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
+    }
+    func leaderboard() {
+        showLeaderboard()
+    }
     
     
 }
+
+
+extension Gameplay: GKGameCenterControllerDelegate {
+    func showLeaderboard() {
+        var viewController = CCDirector.sharedDirector().parentViewController!
+        var gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.gameCenterDelegate = self
+        viewController.presentViewController(gameCenterViewController, animated: true, completion: nil)
+    }
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    func setUpGameCenter() {
+        let gameCenterInteractor = GameCenterInteractor.sharedInstance
+        gameCenterInteractor.authenticationCheck()
+    }
+}
+
+
+
+
+
+
+

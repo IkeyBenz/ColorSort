@@ -100,6 +100,7 @@
 		C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B521B7E497800460157 /* PausedScreen.swift */; };
 		C63E6B551B7E5D8600460157 /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */; };
 		C63E6B571B7E5DA600460157 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63E6B561B7E5DA600460157 /* GameKit.framework */; };
+		C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */; };
 		C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6661B6FE6E8009F6634 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
@@ -225,6 +226,7 @@
 		C63E6B521B7E497800460157 /* PausedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedScreen.swift; sourceTree = "<group>"; };
 		C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
 		C63E6B561B7E5DA600460157 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSoundEffect.mp3; sourceTree = "<group>"; };
 		C6DBF6661B6FE6E8009F6634 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -490,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				B737893C1807616C0076A88C /* Source */,
+				C63E6B601B8055A200460157 /* Sounds */,
 				B77F1B4617B978D7009739AE /* Resources */,
 				9222E2B918734FF800A246C7 /* libs */,
 				B77F1CCF17B978D8009739AE /* Supporting Files */,
@@ -560,6 +563,14 @@
 				B73789861807631A0076A88C /* Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C63E6B601B8055A200460157 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -756,6 +767,7 @@
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,

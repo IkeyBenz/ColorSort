@@ -10,11 +10,35 @@ import Foundation
 import GameKit
 
 class PausedScreen: CCNode {
+    weak var soundLabel: CCLabelTTF!
+    
+    override func onEnter() {
+        updateLabel()
+    }
+   
     func home() {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
     }
     func leaderboard() {
         showLeaderboard()
+    }
+    func toggleEffectsEnabled() {
+        if GameStateSingleton.sharedInstance.soundeffectsEnabled == true {
+            GameStateSingleton.sharedInstance.soundeffectsEnabled = false
+            updateLabel()
+            
+        } else if GameStateSingleton.sharedInstance.soundeffectsEnabled == false {
+            GameStateSingleton.sharedInstance.soundeffectsEnabled = true
+            updateLabel()
+        }
+    }
+    
+    func updateLabel () {
+        if GameStateSingleton.sharedInstance.soundeffectsEnabled == true {
+            soundLabel.string = "Sound: On"
+        } else if GameStateSingleton.sharedInstance.soundeffectsEnabled == false {
+            soundLabel.string = "Sound: Off"
+        }
     }
     
 }

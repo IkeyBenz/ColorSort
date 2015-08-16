@@ -5,7 +5,7 @@ import GameKit
 
 class MainScene: CCNode {
     func didLoadFromCCB() {
-//        iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
+        iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
         setUpGameCenter()
     }
     func play() {

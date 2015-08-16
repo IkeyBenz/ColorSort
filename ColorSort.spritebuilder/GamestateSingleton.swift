@@ -22,6 +22,12 @@ class GameStateSingleton: NSObject {
         }
     }
     
+    var soundeffectsEnabled: Bool = NSUserDefaults.standardUserDefaults().boolForKey("EffectsEnabled") {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setBool(soundeffectsEnabled, forKey: "EffectsEnabled")
+        }
+    }
+    
     
     class var sharedInstance : GameStateSingleton {
         struct Static {

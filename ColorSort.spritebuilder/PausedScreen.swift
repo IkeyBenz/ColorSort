@@ -10,34 +10,49 @@ import Foundation
 import GameKit
 
 class PausedScreen: CCNode {
-    weak var soundLabel: CCLabelTTF!
+    weak var soundEffectsLabel: CCLabelTTF!
+    weak var backgroundMusicLabel: CCLabelTTF!
     
     override func onEnter() {
-        updateLabel()
+        updateEffectsLabel()
+        updateBgButtonLabel()
     }
    
     func home() {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
     }
-    func leaderboard() {
-        showLeaderboard()
-    }
     func toggleEffectsEnabled() {
         if GameStateSingleton.sharedInstance.soundeffectsEnabled == true {
             GameStateSingleton.sharedInstance.soundeffectsEnabled = false
-            updateLabel()
+            updateEffectsLabel()
             
         } else if GameStateSingleton.sharedInstance.soundeffectsEnabled == false {
             GameStateSingleton.sharedInstance.soundeffectsEnabled = true
-            updateLabel()
+            updateEffectsLabel()
+        }
+    }
+    func toggleBackgroundMusic() {
+        if GameStateSingleton.sharedInstance.backgroundMusicEnabled {
+            GameStateSingleton.sharedInstance.backgroundMusicEnabled = false
+        } else if !GameStateSingleton.sharedInstance.backgroundMusicEnabled {
+            GameStateSingleton.sharedInstance.backgroundMusicEnabled = true
+        }
+        updateBgButtonLabel()
+    }
+    
+    func updateEffectsLabel () {
+        if GameStateSingleton.sharedInstance.soundeffectsEnabled == true {
+            soundEffectsLabel.string = "Sound Effects: On"
+        } else if GameStateSingleton.sharedInstance.soundeffectsEnabled == false {
+            soundEffectsLabel.string = "Sound Effects: Off"
         }
     }
     
-    func updateLabel () {
-        if GameStateSingleton.sharedInstance.soundeffectsEnabled == true {
-            soundLabel.string = "Sound: On"
-        } else if GameStateSingleton.sharedInstance.soundeffectsEnabled == false {
-            soundLabel.string = "Sound: Off"
+    func updateBgButtonLabel() {
+        if GameStateSingleton.sharedInstance.backgroundMusicEnabled == true {
+            backgroundMusicLabel.string = "Music: On"
+        } else if GameStateSingleton.sharedInstance.backgroundMusicEnabled == false {
+            backgroundMusicLabel.string = "Music: Off"
         }
     }
     

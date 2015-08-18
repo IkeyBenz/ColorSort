@@ -28,6 +28,12 @@ class GameStateSingleton: NSObject {
         }
     }
     
+    var backgroundMusicEnabled: Bool = NSUserDefaults.standardUserDefaults().boolForKey("BackgroundMusicEnabled") {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setBool(backgroundMusicEnabled, forKey: "BackgroundMusicEnabled")
+        }
+    }
+    
     
     class var sharedInstance : GameStateSingleton {
         struct Static {

@@ -1138,7 +1138,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>NodeSpawn</string>
+				<string>ColorSpawnNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>colorSpawnNode</string>
 				<key>memberVarAssignmentType</key>
@@ -1205,6 +1205,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2366,8 +2368,6 @@
 						<array/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -3085,7 +3085,7 @@
 								<string>String</string>
 								<key>value</key>
 								<array>
-									<string>Restart</string>
+									<string>Try Again</string>
 									<false/>
 								</array>
 							</dict>
@@ -3692,7 +3692,7 @@
 								<string>Block</string>
 								<key>value</key>
 								<array>
-									<string>leaderboard</string>
+									<string>showLeaderboard</string>
 									<integer>1</integer>
 								</array>
 							</dict>

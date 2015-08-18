@@ -93,6 +93,7 @@
 		BC5399DA1A44DCC90063F482 /* GLActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D51A44DCC90063F482 /* GLActivityKit.framework */; };
 		BC5399DB1A44DCC90063F482 /* JavaFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D61A44DCC90063F482 /* JavaFoundation.framework */; };
 		BC5399DC1A44DCC90063F482 /* JavaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D71A44DCC90063F482 /* JavaKit.framework */; };
+		C611741A1B82F55400C68A01 /* A Journey Awaits.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C61174191B82F55400C68A01 /* A Journey Awaits.mp3 */; };
 		C63E6B351B7D45DD00460157 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B341B7D45DD00460157 /* Gameplay.swift */; };
 		C63E6B451B7DCE1400460157 /* iAdHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B441B7DCE1400460157 /* iAdHandler.swift */; };
 		C63E6B471B7DCE2B00460157 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63E6B461B7DCE2B00460157 /* iAd.framework */; };
@@ -220,6 +221,7 @@
 		BC5399D51A44DCC90063F482 /* GLActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLActivityKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/GLActivityKit.framework"; sourceTree = "<group>"; };
 		BC5399D61A44DCC90063F482 /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
 		BC5399D71A44DCC90063F482 /* JavaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaKit.framework"; sourceTree = "<group>"; };
+		C61174191B82F55400C68A01 /* A Journey Awaits.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A Journey Awaits.mp3"; sourceTree = "<group>"; };
 		C63E6B341B7D45DD00460157 /* Gameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gameplay.swift; sourceTree = "<group>"; };
 		C63E6B441B7DCE1400460157 /* iAdHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iAdHandler.swift; sourceTree = "<group>"; };
 		C63E6B461B7DCE2B00460157 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -572,6 +574,7 @@
 			isa = PBXGroup;
 			children = (
 				C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */,
+				C61174191B82F55400C68A01 /* A Journey Awaits.mp3 */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -777,6 +780,7 @@
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
+				C611741A1B82F55400C68A01 /* A Journey Awaits.mp3 in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				C6F995441B82AEB300E24894 /* Images.xcassets in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,

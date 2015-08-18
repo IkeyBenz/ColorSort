@@ -127,12 +127,16 @@ class Gameplay: CCScene {
         if !GameStateSingleton.sharedInstance.alreadyLoaded {
             animationManager.runAnimationsForSequenceNamed("Tutorial")
             GameStateSingleton.sharedInstance.soundeffectsEnabled = true
+            GameStateSingleton.sharedInstance.backgroundMusicEnabled = true
             GameStateSingleton.sharedInstance.alreadyLoaded = true
         } else {
             tutorialFinished = true
         }
         schedule("spawnColors", interval: CCTime(distanceBetweenColors))
         
+        if GameStateSingleton.sharedInstance.backgroundMusicEnabled {
+            audio.playBg("A Journey Awaits.mp3", loop: true)
+        }
     }
     
     override func update(delta: CCTime) {
@@ -172,7 +176,7 @@ class Gameplay: CCScene {
     override func touchMoved(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if currentColorBeingTouched != nil {
             currentColorBeingTouched.position.x = touch.locationInWorld().x
-            if currentColorBeingTouched.position.y < CCDirector.sharedDirector().viewSize().height / 10 {
+            if currentColorBeingTouched.position.y <= (CCDirector.sharedDirector().viewSize().height / 100) * 12 {
                 gameover = true
             }
         }
@@ -182,7 +186,7 @@ class Gameplay: CCScene {
         if currentColorBeingTouched != nil {
             repositionColor(currentColorBeingTouched)
             if effectsAreEnabled() {
-                audio.playBg("popSoundEffect.mp3")
+                audio.playEffect("popSoundEffect.mp3")
             }
             currentColorBeingTouched = nil
         }
@@ -191,7 +195,7 @@ class Gameplay: CCScene {
         if currentColorBeingTouched != nil {
             repositionColor(currentColorBeingTouched)
             if effectsAreEnabled() {
-                audio.playBg("popSoundEffect.mp3")
+                audio.playEffect("popSoundEffect.mp3")
             }
             currentColorBeingTouched = nil
         }
@@ -323,18 +327,19 @@ class Gameplay: CCScene {
             pausedMenu.visible = false
             pausedButton.selected = false
             userInteractionEnabled = true
+            if GameStateSingleton.sharedInstance.backgroundMusicEnabled {
+                audio.paused = false
+            }
         } else if !pausedButton.selected {
             paused = true
             pausedMenu.visible = true
             pausedButton.selected = true
             userInteractionEnabled = false
+            audio.paused = true
         }
     }
     func home() {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
-    }
-    func leaderboard() {
-        showLeaderboard()
     }
     
     // CALLBACKS

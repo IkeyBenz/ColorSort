@@ -102,6 +102,9 @@
 		C63E6B571B7E5DA600460157 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63E6B561B7E5DA600460157 /* GameKit.framework */; };
 		C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */; };
 		C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6661B6FE6E8009F6634 /* Colors.swift */; };
+		C6F995381B8278E100E24894 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6F995371B8278E100E24894 /* Launch Screen.xib */; };
+		C6F9953A1B8286E600E24894 /* SignPainter.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6F995391B8286E600E24894 /* SignPainter.otf */; };
+		C6F995441B82AEB300E24894 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F995431B82AEB300E24894 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +231,9 @@
 		C63E6B561B7E5DA600460157 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSoundEffect.mp3; sourceTree = "<group>"; };
 		C6DBF6661B6FE6E8009F6634 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		C6F995371B8278E100E24894 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		C6F995391B8286E600E24894 /* SignPainter.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SignPainter.otf; sourceTree = "<group>"; };
+		C6F995431B82AEB300E24894 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -491,6 +497,9 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				C6F995431B82AEB300E24894 /* Images.xcassets */,
+				C6F995371B8278E100E24894 /* Launch Screen.xib */,
+				C6F995391B8286E600E24894 /* SignPainter.otf */,
 				B737893C1807616C0076A88C /* Source */,
 				C63E6B601B8055A200460157 /* Sounds */,
 				B77F1B4617B978D7009739AE /* Resources */,
@@ -762,6 +771,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6F9953A1B8286E600E24894 /* SignPainter.otf in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
@@ -771,10 +781,12 @@
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
+				C6F995381B8278E100E24894 /* Launch Screen.xib in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
+				C6F995441B82AEB300E24894 /* Images.xcassets in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
@@ -1099,7 +1111,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1130,7 +1142,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1140,6 +1152,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1167,6 +1180,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1175,6 +1189,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1199,6 +1214,7 @@
 				PRODUCT_NAME = ColorSort;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

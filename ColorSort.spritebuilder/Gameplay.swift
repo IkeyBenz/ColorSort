@@ -1,6 +1,6 @@
 //
 //  Gameplay1.swift
-//  ColorSort
+//  ColorSorter
 //
 //  Created by Ikey Benzaken on 8/13/15.
 //  Copyright (c) 2015 Apportable. All rights reserved.
@@ -30,7 +30,6 @@ class Gameplay: CCScene {
     weak var colorSpawnNode: CCNode!
     weak var highScoreLabel: CCLabelTTF!
     weak var scoreLabel: CCLabelTTF!
-    var new: CCLabelTTF!
     weak var gameOverScore: CCLabelTTF!
     weak var pausedMenu: CCScene!
     weak var pausedButton: CCButton!
@@ -40,7 +39,6 @@ class Gameplay: CCScene {
     var tutorialFinished: Bool = false
     var difficultyDidChange: Bool = false
     var pausedbuttonPressed: Bool = false
-    var shouldShowNewHighScore: Bool = false
     var gameoverLabelFell: Bool = false
     var gameover: Bool = false
  
@@ -62,7 +60,6 @@ class Gameplay: CCScene {
                 GameStateSingleton.sharedInstance.highscore = score
                 GameCenterInteractor.sharedInstance.reportHighScoreToGameCenter(GameStateSingleton.sharedInstance.highscore)
                 highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
-                shouldShowNewHighScore = true
             }
         }
     }
@@ -141,15 +138,16 @@ class Gameplay: CCScene {
     override func update(delta: CCTime) {
         for color in colorArray {
             if color.position.y < (CCDirector.sharedDirector().viewSize().height / 100) * 12 {
+                checkForColor(color)
                 color.removeFromParent()
                 colorArray.removeAtIndex(find(colorArray, color)!)
-                checkForColor(color)
             }
         }
         
         if gameover {
             restartButton.visible = true
             pausedButton.visible = false
+            scoreLabel.visible = false
             for color in colorArray {
                 color.removeFromParent()
             }
@@ -157,9 +155,7 @@ class Gameplay: CCScene {
                 animationManager.runAnimationsForSequenceNamed("Game Over")
                 gameoverLabelFell = true
             }
-            if shouldShowNewHighScore {
-                new.visible = true
-            }
+            
         }
     }
     
@@ -185,7 +181,7 @@ class Gameplay: CCScene {
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if currentColorBeingTouched != nil {
             repositionColor(currentColorBeingTouched)
-            if effectsEnabled() {
+            if effectsAreEnabled() {
                 audio.playBg("popSoundEffect.mp3")
             }
             currentColorBeingTouched = nil
@@ -194,7 +190,7 @@ class Gameplay: CCScene {
     override func touchCancelled(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if currentColorBeingTouched != nil {
             repositionColor(currentColorBeingTouched)
-            if effectsEnabled() {
+            if effectsAreEnabled() {
                 audio.playBg("popSoundEffect.mp3")
             }
             currentColorBeingTouched = nil
@@ -223,11 +219,11 @@ class Gameplay: CCScene {
     // Change opacity of columns when colors are dropped in them
     func changeOpacity(colornode: CCNodeColor) {
         colornode.opacity = 0.7
-        var delay = CCActionDelay(duration: CCTime(0.1))
+        var delay = CCActionDelay(duration: CCTime(0.15))
         var callblock = CCActionCallBlock(block: {colornode.opacity = 0.3})
         runAction(CCActionSequence(array: [delay, callblock]))
     }
-    
+    // Checks to see if the colors match the column they're in, if not, gameover; if so, add a point to score.
     func checkForColor(currentColor: Colors) {
         if currentColor.position.x == screenWidthPercent * 10 {
             if currentColor.colorNode.color != CCColor(ccColor3b: ccColor3B(r: 255, g: 214, b: 75)) {
@@ -272,7 +268,7 @@ class Gameplay: CCScene {
             colorSpeed = 4
             distanceBetweenColors = 1
         } else if score < 20 && score >= 10 {
-            colorSpeed = 2.7
+            colorSpeed = 3.7
             distanceBetweenColors = 0.9
         } else if score < 30 && score >= 20 {
             colorSpeed = 3.4
@@ -293,24 +289,24 @@ class Gameplay: CCScene {
             colorSpeed = 2
             distanceBetweenColors = 0.4
         } else if score < 90 && score >= 80 {
-            colorSpeed = 1.6
+            colorSpeed = 1.8
             distanceBetweenColors = 0.3
         } else if score < 100 && score >= 90 {
-            colorSpeed = 1.3
+            colorSpeed = 1.5
             distanceBetweenColors = 0.3
         } else if score < 110 && score >= 100 {
-            colorSpeed = 1
+            colorSpeed = 1.2
             distanceBetweenColors = 0.2
         } else if score < 120 && score >= 110 {
-            colorSpeed = 0.7
+            colorSpeed = 0.9
             distanceBetweenColors = 0.2
         } else if score < 130 && score >= 120 {
-            colorSpeed = 0.4
+            colorSpeed = 0.7
             distanceBetweenColors = 0.15
         }
     }
     // Checks if sound effects are enabled
-    func effectsEnabled() -> Bool {
+    func effectsAreEnabled() -> Bool {
         if GameStateSingleton.sharedInstance.soundeffectsEnabled {
             return true
         }
@@ -334,9 +330,6 @@ class Gameplay: CCScene {
             userInteractionEnabled = false
         }
     }
-    func startGame() {
-        tutorialFinished = true
-    }
     func home() {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
     }
@@ -344,7 +337,10 @@ class Gameplay: CCScene {
         showLeaderboard()
     }
     
-    
+    // CALLBACKS
+    func startGame() {
+        tutorialFinished = true
+    }
     
 }
 

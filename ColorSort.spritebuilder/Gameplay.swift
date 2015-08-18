@@ -340,6 +340,7 @@ class Gameplay: CCScene {
     }
     func home() {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
+        audio.stopBg()
     }
     
     // CALLBACKS
@@ -356,6 +357,7 @@ extension Gameplay: GKGameCenterControllerDelegate {
         var gameCenterViewController = GKGameCenterViewController()
         gameCenterViewController.gameCenterDelegate = self
         viewController.presentViewController(gameCenterViewController, animated: true, completion: nil)
+        audio.stopBg()
     }
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)

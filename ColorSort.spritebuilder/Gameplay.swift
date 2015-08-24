@@ -27,6 +27,7 @@ class Gameplay: CCScene {
     var colorNode: CCNodeColor!
     var currentColorBeingTouched: Colors!
     var colorArray: [Colors] = []
+    weak var shareHSButton: CCButton!
     weak var colorSpawnNode: CCNode!
     weak var highScoreLabel: CCLabelTTF!
     weak var scoreLabel: CCLabelTTF!
@@ -34,6 +35,7 @@ class Gameplay: CCScene {
     weak var pausedMenu: CCScene!
     weak var pausedButton: CCButton!
     weak var restartButton: CCButton!
+    
     
     // BOOLEANS
     var tutorialFinished: Bool = false
@@ -59,7 +61,13 @@ class Gameplay: CCScene {
             if score > GameStateSingleton.sharedInstance.highscore {
                 GameStateSingleton.sharedInstance.highscore = score
                 GameCenterInteractor.sharedInstance.reportHighScoreToGameCenter(GameStateSingleton.sharedInstance.highscore)
+                
+                // Here I want it to scan the leaderboard and see everyones ranking.
+                // I want it to know who the player was originally above.
+                // Then I want it to send a push notification to the players that this player the beat.
+                
                 highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
+                shareHSButton.visible = true
             }
         }
     }
@@ -217,14 +225,18 @@ class Gameplay: CCScene {
         } else if color.position.x >= screenWidthPercent * 80 {
             changeOpacity(pinkColumn)
             color.position.x = screenWidthPercent * 90
+        } else {
+            // Sometimes when colors are near the blue column the reposition doesn't work so here's the (bad) solution.
+            changeOpacity(blueColumn)
+            color.position.x = screenWidthPercent * 70
         }
         
     }
     // Change opacity of columns when colors are dropped in them
     func changeOpacity(colornode: CCNodeColor) {
-        colornode.opacity = 0.7
+        colornode.opacity = 0.8
         var delay = CCActionDelay(duration: CCTime(0.15))
-        var callblock = CCActionCallBlock(block: {colornode.opacity = 0.3})
+        var callblock = CCActionCallBlock(block: {colornode.opacity = 0.45})
         runAction(CCActionSequence(array: [delay, callblock]))
     }
     // Checks to see if the colors match the column they're in, if not, gameover; if so, add a point to score.
@@ -286,27 +298,27 @@ class Gameplay: CCScene {
         } else if score < 60 && score >= 50 {
             colorSpeed = 2.5
             distanceBetweenColors = 0.5
-        } else if score < 70 && score >= 60 {
+        } else if score < 80 && score >= 60 {
             colorSpeed = 2.2
             distanceBetweenColors = 0.4
-        } else if score < 80 && score >= 70 {
+        } else if score < 100 && score >= 80 {
             colorSpeed = 2
             distanceBetweenColors = 0.4
-        } else if score < 90 && score >= 80 {
-            colorSpeed = 1.8
-            distanceBetweenColors = 0.3
-        } else if score < 100 && score >= 90 {
+        } else if score < 120 && score >= 100 {
+            colorSpeed = 1.9
+            distanceBetweenColors = 0.37
+        } else if score < 140 && score >= 120 {
+            colorSpeed = 1.75
+            distanceBetweenColors = 0.34
+        } else if score < 160 && score >= 140 {
+            colorSpeed = 1.6
+            distanceBetweenColors = 0.31
+        } else if score < 180 && score >= 160 {
             colorSpeed = 1.5
-            distanceBetweenColors = 0.3
-        } else if score < 110 && score >= 100 {
-            colorSpeed = 1.2
-            distanceBetweenColors = 0.2
-        } else if score < 120 && score >= 110 {
-            colorSpeed = 0.9
-            distanceBetweenColors = 0.2
-        } else if score < 130 && score >= 120 {
-            colorSpeed = 0.7
-            distanceBetweenColors = 0.15
+            distanceBetweenColors = 0.285
+        } else if score >= 180 {
+            colorSpeed = 1.45
+            distanceBetweenColors = 0.25
         }
     }
     // Checks if sound effects are enabled
@@ -341,6 +353,9 @@ class Gameplay: CCScene {
     func home() {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
         audio.stopBg()
+    }
+    func shareHighScore() {
+        SharingHandler.sharedInstance.postToTwitter(stringToPost: "Just beat my high score in Color Sorter! I got \(GameStateSingleton.sharedInstance.highscore), beat that!", postWithScreenshot: true)
     }
     
     // CALLBACKS

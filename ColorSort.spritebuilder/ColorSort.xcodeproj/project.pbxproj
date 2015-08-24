@@ -101,7 +101,6 @@
 		C63E6B511B7DEA1800460157 /* GamestateSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */; };
 		C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B521B7E497800460157 /* PausedScreen.swift */; };
 		C63E6B551B7E5D8600460157 /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */; };
-		C63E6B571B7E5DA600460157 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63E6B561B7E5DA600460157 /* GameKit.framework */; };
 		C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */; };
 		C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6661B6FE6E8009F6634 /* Colors.swift */; };
 		C6F995441B82AEB300E24894 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F995431B82AEB300E24894 /* Images.xcassets */; };
@@ -230,7 +229,6 @@
 		C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamestateSingleton.swift; sourceTree = "<group>"; };
 		C63E6B521B7E497800460157 /* PausedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedScreen.swift; sourceTree = "<group>"; };
 		C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
-		C63E6B561B7E5DA600460157 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSoundEffect.mp3; sourceTree = "<group>"; };
 		C6DBF6661B6FE6E8009F6634 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C6F995431B82AEB300E24894 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C63E6B571B7E5DA600460157 /* GameKit.framework in Frameworks */,
 				C63E6B471B7DCE2B00460157 /* iAd.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
@@ -522,7 +519,6 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C63E6B561B7E5DA600460157 /* GameKit.framework */,
 				C63E6B461B7DCE2B00460157 /* iAd.framework */,
 				BC5399D31A44DCC90063F482 /* AndroidKit.framework */,
 				BC5399D41A44DCC90063F482 /* CoreJava.framework */,
@@ -1181,7 +1177,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1216,7 +1212,7 @@
 				PRODUCT_NAME = ColorSort;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -58,7 +58,7 @@ class Gameplay: CCScene {
             if slowMoActivated {
                 unschedule("spawnColors")
                 colorSpeed = 4
-                distanceBetweenColors = 7
+                distanceBetweenColors = 0.7
                 schedule("spawnColors", interval: distanceBetweenColors)
                 var delay = CCActionDelay(duration: 6)
                 var unscheduleSpawnColors = CCActionCallBlock(block: {self.unschedule("spawnColors")})
@@ -82,7 +82,7 @@ class Gameplay: CCScene {
     }
     
     
-    var score: Int = 70 {
+    var score: Int = 0 {
         didSet {
             scoreLabel.string = "\(score)"
             gameOverScore.string = "Score: \(score)"

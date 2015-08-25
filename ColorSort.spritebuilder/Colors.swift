@@ -11,9 +11,9 @@ import Foundation
 class Colors: CCNode {
     var colorNode: CCNodeColor!
     
-    func move(speed: CCTime) {
-        var move: CCActionMoveTo
-        move = CCActionMoveTo(duration: speed, position: ccp(position.x, 20))
-        runAction(CCActionSequence(array: [move]))
+    func move(speed: CCTime, screenHeight: CGFloat) {
+        var move: CCActionMoveBy!
+        move = CCActionMoveBy(duration: speed, position: ccp(0, screenHeight))
+        runAction(move)
     }
 }

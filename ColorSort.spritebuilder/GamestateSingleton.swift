@@ -34,6 +34,14 @@ class GameStateSingleton: NSObject {
         }
     }
     
+    var swipesLeft: Int = NSUserDefaults.standardUserDefaults().integerForKey("SwipesLeft") {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setInteger(swipesLeft, forKey: "SwipesLeft")
+        }
+    }
+    
+    var screenShot: UIImage!
+    
     
     class var sharedInstance : GameStateSingleton {
         struct Static {

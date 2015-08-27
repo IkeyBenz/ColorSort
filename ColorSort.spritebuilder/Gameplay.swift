@@ -27,7 +27,7 @@ class Gameplay: CCScene {
     var colorNode: CCNodeColor!
     var currentColorBeingTouched: Colors!
     var colorArray: [Colors] = []
-    weak var shareHSButton: CCButton!
+    var swipeUp = UISwipeGestureRecognizer()
     weak var colorSpawnNode: CCNode!
     weak var highScoreLabel: CCLabelTTF!
     weak var scoreLabel: CCLabelTTF!
@@ -68,19 +68,18 @@ class Gameplay: CCScene {
                     color.stopAllActions()
                     color.move(4, screenHeight: -CCDirector.sharedDirector().viewSize().height)
                 }
+            } else if !slowMoActivated {
+                updateDifficulty()
             }
         }
     }
     
-    var swipesLeft: Int = 3 {
+    var swipesLeft = GameStateSingleton.sharedInstance.swipesLeft {
         didSet {
-            swipesLeftIndicator.string = "Swipes Left: \(swipesLeft)"
-            if swipesLeft == 0 {
-                swipesLeftIndicator.color = CCColor(ccColor3b: ccColor3B(r: 225, g: 0, b: 0))
-            }
+            animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+            
         }
     }
-    
     
     var score: Int = 0 {
         didSet {
@@ -98,7 +97,6 @@ class Gameplay: CCScene {
                 // Then I want it to send a push notification to the players that this player the beat.
                 
                 highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
-                shareHSButton.visible = true
             }
         }
     }
@@ -168,6 +166,7 @@ class Gameplay: CCScene {
             GameStateSingleton.sharedInstance.soundeffectsEnabled = true
             GameStateSingleton.sharedInstance.backgroundMusicEnabled = true
             GameStateSingleton.sharedInstance.alreadyLoaded = true
+            GameStateSingleton.sharedInstance.swipesLeft = 4
         } else {
             tutorialFinished = true
         }
@@ -176,6 +175,7 @@ class Gameplay: CCScene {
         if GameStateSingleton.sharedInstance.backgroundMusicEnabled {
             audio.playBg("A Journey Awaits.mp3", loop: true)
         }
+        swipesLeftIndicator.string = "Swipes Left: \(GameStateSingleton.sharedInstance.swipesLeft)"
         setupSwipeGesture()
     }
     
@@ -197,6 +197,9 @@ class Gameplay: CCScene {
             }
             if !gameoverLabelFell {
                 animationManager.runAnimationsForSequenceNamed("Game Over")
+                var takePicture = CCActionCallBlock(block: {GameStateSingleton.sharedInstance.screenShot = self.takeScreenshot()})
+                var delay = CCActionDelay(duration: 1)
+                runAction(CCActionSequence(array: [delay, takePicture]))
                 gameoverLabelFell = true
             }
             
@@ -361,21 +364,40 @@ class Gameplay: CCScene {
         return false
     }
     // Sets up our swipe up gesture
+    
     func setupSwipeGesture() {
-        var swipeUp = UISwipeGestureRecognizer(target: self, action: "activateSlowMo")
+        swipeUp = UISwipeGestureRecognizer(target: self, action: "activateSlowMo")
         swipeUp.direction = .Up
         CCDirector.sharedDirector().view.addGestureRecognizer(swipeUp)
     }
     func activateSlowMo() {
         if !gameover {
-            if swipesLeft > 0 {
-                slowMoActivated = true
-                animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
-            } else {
-                animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+            if !slowMoActivated {
+                if swipesLeft > 0 {
+                    slowMoActivated = true
+                    animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+                } else {
+                    animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+                    swipesLeftIndicator.color = CCColor(ccColor3b: ccColor3B(r: 225, g: 0, b: 0))
+                }
             }
         }
     }
+    
+    func takeScreenshot() -> UIImage {
+        CCDirector.sharedDirector().nextDeltaTimeZero = true
+        
+        let width = Int32(CCDirector.sharedDirector().viewSize().width)
+        let height = Int32(CCDirector.sharedDirector().viewSize().height)
+        let renderTexture: CCRenderTexture = CCRenderTexture(width: width, height: height)
+        
+        renderTexture.begin()
+        CCDirector.sharedDirector().runningScene.visit()
+        renderTexture.end()
+        
+        return renderTexture.getUIImage()
+    }
+    
     
     // BUTTONS
     func restart() {
@@ -402,8 +424,9 @@ class Gameplay: CCScene {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("MainScene"))
         audio.stopBg()
     }
-    func shareHighScore() {
-        SharingHandler.sharedInstance.postToTwitter(stringToPost: "Just beat my high score in Color Sorter! I got \(GameStateSingleton.sharedInstance.highscore), beat that!", postWithScreenshot: true)
+    func showStore() {
+        CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("Store"))
+        CCDirector.sharedDirector().view.removeGestureRecognizer(swipeUp)
     }
     
     // CALLBACKS
@@ -411,8 +434,9 @@ class Gameplay: CCScene {
         tutorialFinished = true
     }
     func decreaseAmountOfSwipes() {
-        if swipesLeft > 0 {
-            swipesLeft -= 1
+        if GameStateSingleton.sharedInstance.swipesLeft > 0 {
+            GameStateSingleton.sharedInstance.swipesLeft -= 1
+            swipesLeftIndicator.string = "Swipes Left: \(GameStateSingleton.sharedInstance.swipesLeft)"
         }
     }
     

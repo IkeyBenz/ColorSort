@@ -102,6 +102,8 @@
 		C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B521B7E497800460157 /* PausedScreen.swift */; };
 		C63E6B551B7E5D8600460157 /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */; };
 		C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */; };
+		C6CF37621B8DF27D000E91EF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37611B8DF27D000E91EF /* Store.swift */; };
+		C6CF37661B8E3B53000E91EF /* IAPhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37651B8E3B53000E91EF /* IAPhandler.swift */; };
 		C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6661B6FE6E8009F6634 /* Colors.swift */; };
 		C6F995441B82AEB300E24894 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6F995431B82AEB300E24894 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -230,6 +232,8 @@
 		C63E6B521B7E497800460157 /* PausedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedScreen.swift; sourceTree = "<group>"; };
 		C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
 		C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSoundEffect.mp3; sourceTree = "<group>"; };
+		C6CF37611B8DF27D000E91EF /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		C6CF37651B8E3B53000E91EF /* IAPhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPhandler.swift; sourceTree = "<group>"; };
 		C6DBF6661B6FE6E8009F6634 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C6F995431B82AEB300E24894 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
@@ -460,6 +464,8 @@
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				C63E6B341B7D45DD00460157 /* Gameplay.swift */,
+				C6CF37611B8DF27D000E91EF /* Store.swift */,
+				C6CF37651B8E3B53000E91EF /* IAPhandler.swift */,
 				C626F7D11B8A3C4E005A6B17 /* SharingHandler.swift */,
 				C63E6B521B7E497800460157 /* PausedScreen.swift */,
 				C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */,
@@ -864,10 +870,12 @@
 				C63E6B551B7E5D8600460157 /* GameCenterHelper.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				C63E6B511B7DEA1800460157 /* GamestateSingleton.swift in Sources */,
+				C6CF37621B8DF27D000E91EF /* Store.swift in Sources */,
 				C63E6B351B7D45DD00460157 /* Gameplay.swift in Sources */,
 				C63E6B451B7DCE1400460157 /* iAdHandler.swift in Sources */,
 				C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */,
 				C626F7D21B8A3C4E005A6B17 /* SharingHandler.swift in Sources */,
+				C6CF37661B8E3B53000E91EF /* IAPhandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

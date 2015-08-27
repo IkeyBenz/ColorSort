@@ -9,7 +9,13 @@
 import UIKit
 import Social
 
+protocol sharingDelegate {
+    func userPressedShareWithFriends(userDidShare: Bool)
+}
+
 class SharingHandler: UIViewController {
+    
+    var delegate: sharingDelegate!
     
     // MARK: Constants
     
@@ -44,7 +50,7 @@ class SharingHandler: UIViewController {
             twitterViewController.setInitialText(stringToPost + " \(defaultURL)")
             
             if postWithScreenshot {
-                twitterViewController.addImage(takeScreenshot())
+                twitterViewController.addImage(GameStateSingleton.sharedInstance.screenShot)
             }
             
             // The `completionHandler` block is called when the `twitterViewController` is closed. In this scenario, the `completionHandler` checks to see if a post was successfully made, or if the user exited out of the view without making a tweet.
@@ -52,9 +58,12 @@ class SharingHandler: UIViewController {
                 (result:SLComposeViewControllerResult) in
                 if result == .Done {
                     println("Sharing Handler: User posted to Twitter")
+                    GameStateSingleton.sharedInstance.swipesLeft += 3
+                    self.delegate.userPressedShareWithFriends(true)
                 }
                 else {
                     println("Sharing Handler: User did not post to Twitter")
+                    self.delegate.userPressedShareWithFriends(false)
                 }
             }
             

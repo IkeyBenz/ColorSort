@@ -109,6 +109,9 @@ class iAdHandler: NSObject {
         }
     }
     
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        GameStateSingleton.sharedInstance.bannersClicked++
+    }
     
     // MARK: Interstitial Functions
     
@@ -262,5 +265,6 @@ extension iAdHandler: ADBannerViewDelegate {
     */
     func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
         println("Was not able to load a banner with error: \(error)")
+        loadAds(bannerPosition: .Bottom)
     }
 }

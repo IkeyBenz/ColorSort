@@ -44,6 +44,7 @@ class Gameplay: CCScene {
     var pausedbuttonPressed: Bool = false
     var gameoverLabelFell: Bool = false
     var gameover: Bool = false
+    var playerUsedSwipe: Bool = false
     
     var distanceBetweenColors: CCTime = 1 {
         didSet {
@@ -157,6 +158,7 @@ class Gameplay: CCScene {
     
     
     func didLoadFromCCB() {
+        iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
         iAdHandler.sharedInstance.displayBannerAd()
         userInteractionEnabled = true
         highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
@@ -373,12 +375,17 @@ class Gameplay: CCScene {
     func activateSlowMo() {
         if !gameover {
             if !slowMoActivated {
-                if swipesLeft > 0 {
-                    slowMoActivated = true
-                    animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
-                } else {
-                    animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
-                    swipesLeftIndicator.color = CCColor(ccColor3b: ccColor3B(r: 225, g: 0, b: 0))
+                if !playerUsedSwipe {
+                    if swipesLeft > 0 {
+                        slowMoActivated = true
+                        animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+                        playerUsedSwipe = true
+                    } else {
+                        animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+                        swipesLeftIndicator.color = CCColor(ccColor3b: ccColor3B(r: 225, g: 0, b: 0))
+                    }
+                } else if playerUsedSwipe {
+                    // Show a label saying ~you already used your swipe for the game
                 }
             }
         }

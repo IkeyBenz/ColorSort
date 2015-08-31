@@ -102,6 +102,7 @@
 		C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B521B7E497800460157 /* PausedScreen.swift */; };
 		C63E6B551B7E5D8600460157 /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */; };
 		C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */; };
+		C67DE6531B90D8EE0084FD90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67DE6521B90D8EE0084FD90 /* StoreKit.framework */; };
 		C6CF37621B8DF27D000E91EF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37611B8DF27D000E91EF /* Store.swift */; };
 		C6CF37661B8E3B53000E91EF /* IAPhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37651B8E3B53000E91EF /* IAPhandler.swift */; };
 		C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6661B6FE6E8009F6634 /* Colors.swift */; };
@@ -232,6 +233,7 @@
 		C63E6B521B7E497800460157 /* PausedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedScreen.swift; sourceTree = "<group>"; };
 		C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
 		C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSoundEffect.mp3; sourceTree = "<group>"; };
+		C67DE6521B90D8EE0084FD90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C6CF37611B8DF27D000E91EF /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C6CF37651B8E3B53000E91EF /* IAPhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPhandler.swift; sourceTree = "<group>"; };
 		C6DBF6661B6FE6E8009F6634 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				B77F1B3C17B978D7009739AE /* UIKit.framework in Frameworks */,
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
 				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
+				C67DE6531B90D8EE0084FD90 /* StoreKit.framework in Frameworks */,
 				B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,16 +465,12 @@
 			isa = PBXGroup;
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
-				7A046D7519E84C36004C4763 /* MainScene.swift */,
-				C63E6B341B7D45DD00460157 /* Gameplay.swift */,
-				C6CF37611B8DF27D000E91EF /* Store.swift */,
+				C67DE6561B92847B0084FD90 /* Scenes */,
 				C6CF37651B8E3B53000E91EF /* IAPhandler.swift */,
-				C626F7D11B8A3C4E005A6B17 /* SharingHandler.swift */,
-				C63E6B521B7E497800460157 /* PausedScreen.swift */,
-				C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */,
-				C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */,
 				C63E6B441B7DCE1400460157 /* iAdHandler.swift */,
-				C6DBF6661B6FE6E8009F6634 /* Colors.swift */,
+				C626F7D11B8A3C4E005A6B17 /* SharingHandler.swift */,
+				C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */,
+				C63E6B501B7DEA1800460157 /* GamestateSingleton.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
 			name = Source;
@@ -525,6 +524,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C67DE6521B90D8EE0084FD90 /* StoreKit.framework */,
 				C63E6B461B7DCE2B00460157 /* iAd.framework */,
 				BC5399D31A44DCC90063F482 /* AndroidKit.framework */,
 				BC5399D41A44DCC90063F482 /* CoreJava.framework */,
@@ -582,6 +582,18 @@
 				C61174191B82F55400C68A01 /* A Journey Awaits.mp3 */,
 			);
 			name = Sounds;
+			sourceTree = "<group>";
+		};
+		C67DE6561B92847B0084FD90 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				7A046D7519E84C36004C4763 /* MainScene.swift */,
+				C63E6B341B7D45DD00460157 /* Gameplay.swift */,
+				C6CF37611B8DF27D000E91EF /* Store.swift */,
+				C63E6B521B7E497800460157 /* PausedScreen.swift */,
+				C6DBF6661B6FE6E8009F6634 /* Colors.swift */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -650,7 +662,7 @@
 		B77F1B2617B978D7009739AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Apportable;
 				TargetAttributes = {
 					7A4035FE19DDEE84007B6E8F = {
@@ -661,6 +673,9 @@
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1102,6 +1117,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1135,6 +1151,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
@@ -1163,6 +1180,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/IkeyBenz/Downloads/AdColony-iOS-SDK-master-2",
+					"$(PROJECT_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
@@ -1172,10 +1194,15 @@
 					"Source/libs/cocos2d-iphone/external/Chipmunk/include",
 					"\"Source/libs/cocos2d-iphone/cocos2d-ui\"/**",
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
+					Frameworks/Chartboost.framework/Headers,
 				);
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -1201,6 +1228,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/IkeyBenz/Downloads/AdColony-iOS-SDK-master-2",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				HEADER_SEARCH_PATHS = (
@@ -1209,10 +1241,15 @@
 					"Source/libs/cocos2d-iphone/external/Chipmunk/include",
 					"\"Source/libs/cocos2d-iphone/cocos2d-ui\"/**",
 					"\"Source/libs/cocos2d-iphone/external/ObjectAL\"/**",
+					Frameworks/Chartboost.framework/Headers,
 				);
 				INFOPLIST_FILE = Source/Resources/Platforms/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",

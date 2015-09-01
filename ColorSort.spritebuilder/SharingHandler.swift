@@ -58,7 +58,7 @@ class SharingHandler: UIViewController {
                 (result:SLComposeViewControllerResult) in
                 if result == .Done {
                     println("Sharing Handler: User posted to Twitter")
-                    GameStateSingleton.sharedInstance.swipesLeft += 3
+                    GameStateSingleton.sharedInstance.swipesLeft += 1
                     self.delegate.userPressedShareWithFriends(true)
                 }
                 else {

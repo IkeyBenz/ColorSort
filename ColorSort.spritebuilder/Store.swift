@@ -19,15 +19,15 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
         let kChartboostAppSignature = "f9fdd445ee21890d8d8871519ad32899a1f3d527";
         Chartboost.startWithAppId(kChartboostAppID, appSignature: kChartboostAppSignature, delegate: self);
         Chartboost.cacheRewardedVideo(CBLocationItemStore)
+        updateLabel()
     }
     
     func didLoadFromCCB() {
-        
-        updateLabel()
+        iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
+        iAdHandler.sharedInstance.displayBannerAd()
         InAppPurchases.sharedInstance.IAPdelegate = self
         SharingHandler.sharedInstance.delegate = self
         println("Store Loaded")
-        
     }
     
     func tryAgain() {
@@ -71,6 +71,7 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
             buySwipesButton.title = "Buy Swipes"
         }
         if swipesWerePurchased {
+            animateLabel()
             updateLabel()
         }
     }
@@ -80,13 +81,14 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
         }
     }
     func updateLabel() {
-        var increaseScale = CCActionCallBlock(block: {self.amountOfSwipesLabel.scale = 1.2})
-        var updateLabel = CCActionCallBlock(block: {self.amountOfSwipesLabel.string = "Swipes Left: \(GameStateSingleton.sharedInstance.swipesLeft)"})
-        var decreaseScale = CCActionCallBlock(block: {self.amountOfSwipesLabel.scale = 1})
-        var delay = CCActionDelay(duration: 0.5)
-        runAction(CCActionSequence(array: [increaseScale, delay, updateLabel, delay, decreaseScale]))
+        amountOfSwipesLabel.string = "Swipes Left: \(GameStateSingleton.sharedInstance.swipesLeft)"
     }
-    
+    func animateLabel() {
+        var delay = CCActionDelay(duration: 1)
+        var callblock = CCActionCallBlock(block: {self.animationManager.runAnimationsForSequenceNamed("Swipes Label")})
+        runAction(CCActionSequence(array: [delay, callblock]))
+    }
+   
     
     
     

@@ -109,9 +109,6 @@ class iAdHandler: NSObject {
         }
     }
     
-    func bannerViewActionDidFinish(banner: ADBannerView!) {
-        GameStateSingleton.sharedInstance.bannersClicked++
-    }
     
     // MARK: Interstitial Functions
     

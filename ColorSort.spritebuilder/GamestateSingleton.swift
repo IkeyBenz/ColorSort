@@ -40,13 +40,6 @@ class GameStateSingleton: NSObject {
         }
     }
     
-    var bannersClicked: Int = NSUserDefaults.standardUserDefaults().integerForKey("BannersClicked") {
-        didSet {
-            NSUserDefaults.standardUserDefaults().setInteger(bannersClicked, forKey: "BannersClicked")
-        }
-    }
-    
-    
     var screenShot: UIImage!
     
     

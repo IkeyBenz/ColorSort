@@ -25,11 +25,6 @@
 
 #import "cocos2d.h"
 #import "AppDelegate.h"
-#import "CCBuilderReader.h"
-#import "OALSimpleAudio.h"
-#import <Chartboost/Chartboost.h>
-#import <CommonCrypto/CommonDigest.h>
-#import <AdSupport/AdSupport.h>
 
 @interface AppController : CCAppDelegate
 {

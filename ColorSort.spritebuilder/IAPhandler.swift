@@ -26,7 +26,10 @@ class InAppPurchases: SKProductsRequest, SKProductsRequestDelegate, SKPaymentTra
             productRequest.start()
             IAPdelegate.initializingIAP(true)
         } else {
-            // Let user know
+            let alert = UIAlertView()
+            alert.title = "Purchase failed"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
         }
     }
     
@@ -57,13 +60,17 @@ class InAppPurchases: SKProductsRequest, SKProductsRequestDelegate, SKPaymentTra
                 switch tx.transactionState {
                 case .Purchased:
                     println("product purchased")
-                    GameStateSingleton.sharedInstance.swipesLeft += 30
+                    GameStateSingleton.sharedInstance.swipesLeft += 10
                     IAPdelegate.IAPFinished(true, swipesWerePurchased: true)
                     queue.finishTransaction(tx)
                 case .Failed:
                     println("oops, purchase failed!")
                     IAPdelegate.IAPFinished(true, swipesWerePurchased: false)
                     queue.finishTransaction(tx)
+                    let alert = UIAlertView()
+                    alert.title = "Purchase failed"
+                    alert.addButtonWithTitle("Ok")
+                    alert.show()
                 case .Purchasing, .Deferred:
                     println("waiting for completion...")
                 case .Restored:

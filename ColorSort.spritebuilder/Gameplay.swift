@@ -98,11 +98,6 @@ class Gameplay: CCScene, intersitialDelegate {
             if score > GameStateSingleton.sharedInstance.highscore {
                 GameStateSingleton.sharedInstance.highscore = score
                 GameCenterInteractor.sharedInstance.reportHighScoreToGameCenter(GameStateSingleton.sharedInstance.highscore)
-                
-                // Here I want it to scan the leaderboard and see everyones ranking.
-                // I want it to know who the player was originally above.
-                // Then I want it to send a push notification to the players that this player the beat.
-                
                 highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
             }
         }
@@ -181,7 +176,8 @@ class Gameplay: CCScene, intersitialDelegate {
             tutorialFinished = true
         }
         schedule("spawnColors", interval: CCTime(distanceBetweenColors))
-        
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
+        AVAudioSession.sharedInstance().setActive(true, error: nil)
         if GameStateSingleton.sharedInstance.backgroundMusicEnabled {
             audio.playBg("A Journey Awaits.mp3", loop: true)
         }
@@ -396,23 +392,25 @@ class Gameplay: CCScene, intersitialDelegate {
     }
     func activateSlowMo() {
         if !gameover {
-            if tutorialFinished {
-                swipeUpLabel.visible = false
-                if !slowMoActivated {
-                    if GameStateSingleton.sharedInstance.swipesLeft >= timesSwiped {
-                        slowMoActivated = true
-                        animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+            if !paused {
+                if tutorialFinished {
+                    swipeUpLabel.visible = false
+                    if !slowMoActivated {
+                        if GameStateSingleton.sharedInstance.swipesLeft >= timesSwiped {
+                            slowMoActivated = true
+                            animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
+                        } else {
+                            notEnoughSwipesLabel.visible = true
+                            var delay = CCActionDelay(duration: 2)
+                            var callblock = CCActionCallBlock(block: {self.notEnoughSwipesLabel.visible = false})
+                            runAction(CCActionSequence(array: [delay, callblock]))
+                        }
                     } else {
-                        notEnoughSwipesLabel.visible = true
+                        slowMoAlreadyActivatedLabel.visible = true
                         var delay = CCActionDelay(duration: 2)
-                        var callblock = CCActionCallBlock(block: {self.notEnoughSwipesLabel.visible = false})
+                        var callblock = CCActionCallBlock(block: {self.slowMoAlreadyActivatedLabel.visible = false})
                         runAction(CCActionSequence(array: [delay, callblock]))
                     }
-                } else {
-                    slowMoAlreadyActivatedLabel.visible = true
-                    var delay = CCActionDelay(duration: 2)
-                    var callblock = CCActionCallBlock(block: {self.slowMoAlreadyActivatedLabel.visible = false})
-                    runAction(CCActionSequence(array: [delay, callblock]))
                 }
             }
         }

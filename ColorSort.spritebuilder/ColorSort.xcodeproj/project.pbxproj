@@ -104,7 +104,7 @@
 		C63E6B531B7E497800460157 /* PausedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B521B7E497800460157 /* PausedScreen.swift */; };
 		C63E6B551B7E5D8600460157 /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */; };
 		C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */; };
-		C6405A081B97B27E0035F091 /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C6405A071B97B27E0035F091 /* closeButton.png */; };
+		C654C4B01B98BF62000F95D4 /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C654C4AF1B98BF62000F95D4 /* closeButton.png */; };
 		C67DE6531B90D8EE0084FD90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67DE6521B90D8EE0084FD90 /* StoreKit.framework */; };
 		C6CF37621B8DF27D000E91EF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37611B8DF27D000E91EF /* Store.swift */; };
 		C6CF37661B8E3B53000E91EF /* IAPhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37651B8E3B53000E91EF /* IAPhandler.swift */; };
@@ -240,7 +240,7 @@
 		C63E6B521B7E497800460157 /* PausedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PausedScreen.swift; sourceTree = "<group>"; };
 		C63E6B541B7E5D8600460157 /* GameCenterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
 		C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSoundEffect.mp3; sourceTree = "<group>"; };
-		C6405A071B97B27E0035F091 /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
+		C654C4AF1B98BF62000F95D4 /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		C67DE6521B90D8EE0084FD90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C6CF37611B8DF27D000E91EF /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C6CF37651B8E3B53000E91EF /* IAPhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPhandler.swift; sourceTree = "<group>"; };
@@ -576,7 +576,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C6405A071B97B27E0035F091 /* closeButton.png */,
+				C654C4AF1B98BF62000F95D4 /* closeButton.png */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
 				B73789911807667A0076A88C /* Icons */,
@@ -813,7 +813,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6405A081B97B27E0035F091 /* closeButton.png in Resources */,
+				C654C4B01B98BF62000F95D4 /* closeButton.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,

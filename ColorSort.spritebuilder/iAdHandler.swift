@@ -137,7 +137,7 @@ class iAdHandler: NSObject {
             UIViewController.prepareInterstitialAds()
             
             closeButton = UIButton(frame: CGRect(x: 15, y: 15, width: 25, height: 25))
-            closeButton.setBackgroundImage(UIImage(named: "closeButton.png"), forState: UIControlState.Normal)
+            closeButton.setBackgroundImage(UIImage(named: "closeButton"), forState: UIControlState.Normal)
             closeButton.addTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchDown)
             self.view.addSubview(closeButton)
             

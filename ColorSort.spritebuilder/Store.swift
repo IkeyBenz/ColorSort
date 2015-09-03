@@ -13,12 +13,19 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
     
     weak var buySwipesButton: CCButton!
     weak var amountOfSwipesLabel: CCLabelTTF!
+    weak var reviewButton: CCButton!
+    weak var reviewExplaination: CCLabelTTF!
+    weak var buttonsNode: CCNode!
+    var wroteReview: Bool = false
+    
+    var didWriteReview = NSUserDefaults.standardUserDefaults().boolForKey("userWroteReview")
     
     override func onEnter() {
         let kChartboostAppID = "55e2b3170d60252dd5a3b10d";
         let kChartboostAppSignature = "f9fdd445ee21890d8d8871519ad32899a1f3d527";
         Chartboost.startWithAppId(kChartboostAppID, appSignature: kChartboostAppSignature, delegate: self);
         Chartboost.cacheRewardedVideo(CBLocationItemStore)
+        
         updateLabel()
     }
     
@@ -27,6 +34,12 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
         iAdHandler.sharedInstance.displayBannerAd()
         InAppPurchases.sharedInstance.IAPdelegate = self
         SharingHandler.sharedInstance.delegate = self
+        if didWriteReview {
+            reviewButton.visible = false
+            reviewExplaination.visible = false
+            buttonsNode.position.y = 0.87
+            
+        }
         println("Store Loaded")
     }
     
@@ -34,8 +47,17 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("Gameplay"))
     }
     func writeAReview() {
-        if let url = NSURL(string: "https://appsto.re/us/PVxC9.i") {
-            UIApplication.sharedApplication().openURL(url)
+        if !wroteReview {
+            if let url = NSURL(string: "https://appsto.re/us/PVxC9.i") {
+                UIApplication.sharedApplication().openURL(url)
+            }
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userWroteReview")
+            wroteReview = true
+            reviewExplaination.string = "Thanks for your support!"
+            GameStateSingleton.sharedInstance.swipesLeft += 2
+            updateLabel()
+        } else {
+            reviewButton.title = "Already wrote a review!"
         }
     }
     func watchAnAd() {
@@ -88,7 +110,9 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
         var callblock = CCActionCallBlock(block: {self.animationManager.runAnimationsForSequenceNamed("Swipes Label")})
         runAction(CCActionSequence(array: [delay, callblock]))
     }
-   
+    
+    
+    
     
     
     

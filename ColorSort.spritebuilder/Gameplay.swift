@@ -10,7 +10,7 @@ import Foundation
 import GameKit
 import AudioToolbox
 
-class Gameplay: CCScene {
+class Gameplay: CCScene, intersitialDelegate {
     
     // COLOR COLUMNS
     weak var yellowColumn: CCNodeColor!
@@ -28,11 +28,16 @@ class Gameplay: CCScene {
     var currentColorBeingTouched: Colors!
     var colorArray: [Colors] = []
     var swipeUp = UISwipeGestureRecognizer()
+    var timesSwiped: Int = 1
     weak var colorSpawnNode: CCNode!
     weak var highScoreLabel: CCLabelTTF!
     weak var scoreLabel: CCLabelTTF!
     weak var gameOverScore: CCLabelTTF!
     weak var swipesLeftIndicator: CCLabelTTF!
+    weak var swipeUpLabel: CCLabelTTF!
+    weak var slowMoAlreadyActivatedLabel: CCLabelTTF!
+    weak var notEnoughSwipesLabel: CCLabelTTF!
+    weak var multiplierLabel: CCLabelTTF!
     weak var pausedMenu: CCScene!
     weak var pausedButton: CCButton!
     weak var restartButton: CCButton!
@@ -45,6 +50,7 @@ class Gameplay: CCScene {
     var gameoverLabelFell: Bool = false
     var gameover: Bool = false
     var playerUsedSwipe: Bool = false
+    var didntTryToLoadInterstitial: Bool = true
     
     var distanceBetweenColors: CCTime = 1 {
         didSet {
@@ -57,18 +63,18 @@ class Gameplay: CCScene {
     var slowMoActivated: Bool = false {
         didSet {
             if slowMoActivated {
+                println("slow mo should be activated")
                 unschedule("spawnColors")
                 colorSpeed = 4
-                distanceBetweenColors = 0.7
+                distanceBetweenColors = 0.9
                 schedule("spawnColors", interval: distanceBetweenColors)
-                var delay = CCActionDelay(duration: 6)
-                var unscheduleSpawnColors = CCActionCallBlock(block: {self.unschedule("spawnColors")})
-                var setSlowMoToFalse = CCActionCallBlock(block: {self.slowMoActivated = false})
-                runAction(CCActionSequence(array: [delay, unscheduleSpawnColors, setSlowMoToFalse]))
                 for color in colorArray {
                     color.stopAllActions()
-                    color.move(4, screenHeight: -CCDirector.sharedDirector().viewSize().height)
+                    color.move(colorSpeed, screenHeight: -CCDirector.sharedDirector().viewSize().height)
                 }
+                var delay = CCActionDelay(duration: 6)
+                var setSlowMoToFalse = CCActionCallBlock(block: {self.slowMoActivated = false})
+                runAction(CCActionSequence(array: [delay, setSlowMoToFalse]))
             } else if !slowMoActivated {
                 updateDifficulty()
             }
@@ -159,7 +165,9 @@ class Gameplay: CCScene {
     
     func didLoadFromCCB() {
         iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
+        iAdHandler.sharedInstance.loadInterstitialAd()
         iAdHandler.sharedInstance.displayBannerAd()
+        iAdHandler.sharedInstance.adDelegate = self
         userInteractionEnabled = true
         highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
         swipesLeftIndicator.string = "Swipes Left: \(swipesLeft)"
@@ -197,14 +205,25 @@ class Gameplay: CCScene {
             for color in colorArray {
                 color.removeFromParent()
             }
+            if GameStateSingleton.sharedInstance.gamesPlayed > 3 {
+                if didntTryToLoadInterstitial {
+                    iAdHandler.sharedInstance.loadInterstitialAd()
+                    var delay = CCActionDelay(duration: 1)
+                    var callblock = CCActionCallBlock(block: {iAdHandler.sharedInstance.displayInterstitialAd()})
+                    runAction(CCActionSequence(array: [delay ,callblock]))
+                    didntTryToLoadInterstitial = false
+                }
+            }
+            
             if !gameoverLabelFell {
                 animationManager.runAnimationsForSequenceNamed("Game Over")
+                GameStateSingleton.sharedInstance.gamesPlayed += 1
+                println(GameStateSingleton.sharedInstance.gamesPlayed)
                 var takePicture = CCActionCallBlock(block: {GameStateSingleton.sharedInstance.screenShot = self.takeScreenshot()})
                 var delay = CCActionDelay(duration: 1)
                 runAction(CCActionSequence(array: [delay, takePicture]))
                 gameoverLabelFell = true
             }
-            
         }
     }
     
@@ -271,9 +290,9 @@ class Gameplay: CCScene {
     }
     // Change opacity of columns when colors are dropped in them
     func changeOpacity(colornode: CCNodeColor) {
-        colornode.opacity = 0.8
+        colornode.opacity = 0.9
         var delay = CCActionDelay(duration: CCTime(0.15))
-        var callblock = CCActionCallBlock(block: {colornode.opacity = 0.5})
+        var callblock = CCActionCallBlock(block: {colornode.opacity = 0.75})
         runAction(CCActionSequence(array: [delay, callblock]))
     }
     // Checks to see if the colors match the column they're in, if not, gameover; if so, add a point to score.
@@ -335,6 +354,10 @@ class Gameplay: CCScene {
         } else if score < 60 && score >= 50 {
             colorSpeed = 2.5
             distanceBetweenColors = 0.5
+            if !GameStateSingleton.sharedInstance.swipeUpLabelWasShown {
+                swipeUpLabel.visible = true
+                GameStateSingleton.sharedInstance.swipeUpLabelWasShown = true
+            }
         } else if score < 80 && score >= 60 {
             colorSpeed = 2.2
             distanceBetweenColors = 0.4
@@ -366,7 +389,6 @@ class Gameplay: CCScene {
         return false
     }
     // Sets up our swipe up gesture
-    
     func setupSwipeGesture() {
         swipeUp = UISwipeGestureRecognizer(target: self, action: "activateSlowMo")
         swipeUp.direction = .Up
@@ -374,22 +396,28 @@ class Gameplay: CCScene {
     }
     func activateSlowMo() {
         if !gameover {
-            if !slowMoActivated {
-                if !playerUsedSwipe {
-                    if swipesLeft > 0 {
+            if tutorialFinished {
+                swipeUpLabel.visible = false
+                if !slowMoActivated {
+                    if GameStateSingleton.sharedInstance.swipesLeft >= timesSwiped {
                         slowMoActivated = true
                         animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
-                        playerUsedSwipe = true
                     } else {
-                        animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
-                        swipesLeftIndicator.color = CCColor(ccColor3b: ccColor3B(r: 225, g: 0, b: 0))
+                        notEnoughSwipesLabel.visible = true
+                        var delay = CCActionDelay(duration: 2)
+                        var callblock = CCActionCallBlock(block: {self.notEnoughSwipesLabel.visible = false})
+                        runAction(CCActionSequence(array: [delay, callblock]))
                     }
-                } else if playerUsedSwipe {
-                    // Show a label saying ~you already used your swipe for the game
+                } else {
+                    slowMoAlreadyActivatedLabel.visible = true
+                    var delay = CCActionDelay(duration: 2)
+                    var callblock = CCActionCallBlock(block: {self.slowMoAlreadyActivatedLabel.visible = false})
+                    runAction(CCActionSequence(array: [delay, callblock]))
                 }
             }
         }
     }
+    
     
     func takeScreenshot() -> UIImage {
         CCDirector.sharedDirector().nextDeltaTimeZero = true
@@ -432,8 +460,13 @@ class Gameplay: CCScene {
         audio.stopBg()
     }
     func showStore() {
-        CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("Store"))
+        audio.stopBg()
         CCDirector.sharedDirector().view.removeGestureRecognizer(swipeUp)
+        CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("Store"))
+    }
+    func interstitialDidLoad() {
+        GameStateSingleton.sharedInstance.gamesPlayed = 0
+        iAdHandler.sharedInstance.hideBannerAd()
     }
     
     // CALLBACKS
@@ -441,12 +474,13 @@ class Gameplay: CCScene {
         tutorialFinished = true
     }
     func decreaseAmountOfSwipes() {
-        if GameStateSingleton.sharedInstance.swipesLeft > 0 {
-            GameStateSingleton.sharedInstance.swipesLeft -= 1
+        if GameStateSingleton.sharedInstance.swipesLeft >= timesSwiped {
+            GameStateSingleton.sharedInstance.swipesLeft -= timesSwiped
+            timesSwiped += 1
             swipesLeftIndicator.string = "Swipes Left: \(GameStateSingleton.sharedInstance.swipesLeft)"
+            multiplierLabel.string = "Multiplier: \(timesSwiped)x"
         }
     }
-    
 }
 
 // GAMECENTER

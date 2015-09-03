@@ -16,6 +16,7 @@ protocol InAppPurchasesDelegate {
 
 class InAppPurchases: SKProductsRequest, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
+    
     var IAPdelegate: InAppPurchasesDelegate!
     
     func attemptPurchase(productName: String) {
@@ -60,7 +61,7 @@ class InAppPurchases: SKProductsRequest, SKProductsRequestDelegate, SKPaymentTra
                 switch tx.transactionState {
                 case .Purchased:
                     println("product purchased")
-                    GameStateSingleton.sharedInstance.swipesLeft += 10
+                    GameStateSingleton.sharedInstance.swipesLeft += 25
                     IAPdelegate.IAPFinished(true, swipesWerePurchased: true)
                     queue.finishTransaction(tx)
                 case .Failed:

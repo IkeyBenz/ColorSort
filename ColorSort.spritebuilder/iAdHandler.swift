@@ -5,6 +5,10 @@ enum BannerPosition {
     case Top, Bottom
 }
 
+protocol intersitialDelegate {
+    func interstitialDidLoad()
+}
+
 class iAdHandler: NSObject {
     
     // MARK: Variables
@@ -14,6 +18,7 @@ class iAdHandler: NSObject {
     var adBannerView = ADBannerView(frame: CGRect.zeroRect)
     var bannerPosition: BannerPosition = .Top
     var isBannerDisplaying: Bool = false
+    var adDelegate: intersitialDelegate!
     
     var interstitial = ADInterstitialAd()
     var interstitialAdView: UIView = UIView()
@@ -21,7 +26,6 @@ class iAdHandler: NSObject {
     var isInterstitialLoaded: Bool = false
     
     var closeButton: UIButton!
-    
     
     // MARK: Singleton
     
@@ -133,7 +137,7 @@ class iAdHandler: NSObject {
             UIViewController.prepareInterstitialAds()
             
             closeButton = UIButton(frame: CGRect(x: 15, y: 15, width: 25, height: 25))
-            closeButton.setBackgroundImage(UIImage(named: "close"), forState: UIControlState.Normal)
+            closeButton.setBackgroundImage(UIImage(named: "closeButton.png"), forState: UIControlState.Normal)
             closeButton.addTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchDown)
             self.view.addSubview(closeButton)
             
@@ -146,6 +150,7 @@ class iAdHandler: NSObject {
                 self.closeButton.hidden = false
             })
             
+            adDelegate.interstitialDidLoad()
             println("Interstitial displaying!")
         }
         else {

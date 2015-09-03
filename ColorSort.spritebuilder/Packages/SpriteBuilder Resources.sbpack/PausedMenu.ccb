@@ -467,7 +467,7 @@
 									<real>0.0</real>
 									<real>0.0</real>
 									<real>0.0</real>
-									<real>0.52999997138977051</real>
+									<real>0.25</real>
 								</array>
 							</dict>
 							<dict>
@@ -1000,7 +1000,7 @@
 									<real>0.0</real>
 									<real>0.0</real>
 									<real>0.0</real>
-									<real>1</real>
+									<real>0.5</real>
 								</array>
 							</dict>
 							<dict>
@@ -1334,7 +1334,7 @@
 									<real>0.0</real>
 									<real>0.0</real>
 									<real>0.0</real>
-									<real>0.52999997138977051</real>
+									<real>0.25</real>
 								</array>
 							</dict>
 							<dict>
@@ -1875,7 +1875,7 @@
 									<real>0.0</real>
 									<real>0.0</real>
 									<real>0.0</real>
-									<real>1</real>
+									<real>0.5</real>
 								</array>
 							</dict>
 							<dict>
@@ -1928,6 +1928,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -2000,8 +2002,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

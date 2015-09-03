@@ -119,13 +119,3 @@ class GameCenterInteractor: NSObject, GKLocalPlayerListener {
 
 
 
-
-class GKLeaderboard: NSObject {
-    func loadScoresWithCompletionHandler(completionHandler: (([AnyObject]!, NSError!) -> Void)!) {
-        
-    }
-}
-
-
-
-

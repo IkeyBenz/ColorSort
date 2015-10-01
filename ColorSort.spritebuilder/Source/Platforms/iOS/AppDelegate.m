@@ -32,6 +32,7 @@
 #import <AdSupport/AdSupport.h>
 
 
+
 @implementation AppController
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -57,6 +58,7 @@
     //[cocos2dSetup setObject:kEAGLColorFormatRGB565 forKey:CCConfigPixelFormat];
     
     [self setupCocos2dWithOptions:cocos2dSetup];
+    
     [Chartboost startWithAppId:@"55e2b3170d60252dd5a3b10d"
                   appSignature:@"f9fdd445ee21890d8d8871519ad32899a1f3d527"
                       delegate:self];

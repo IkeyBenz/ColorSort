@@ -79,7 +79,6 @@
 		B7378977180762440076A88C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896D180762440076A88C /* Default.png */; };
 		B7378978180762440076A88C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896E180762440076A88C /* Default@2x.png */; };
 		B73789871807631A0076A88C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B73789851807631A0076A88C /* main.m */; };
-		B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
 		B77F1B3417B978D7009739AE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3317B978D7009739AE /* OpenGLES.framework */; };
 		B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
 		B77F1B3817B978D7009739AE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3717B978D7009739AE /* AudioToolbox.framework */; };
@@ -106,6 +105,9 @@
 		C63E6B5F1B80559900460157 /* popSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */; };
 		C654C4B01B98BF62000F95D4 /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C654C4AF1B98BF62000F95D4 /* closeButton.png */; };
 		C67DE6531B90D8EE0084FD90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67DE6521B90D8EE0084FD90 /* StoreKit.framework */; };
+		C6B3808A1BB4B3420036472C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B380891BB4B3420036472C /* CoreTelephony.framework */; };
+		C6B3808C1BB4B3550036472C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B3808B1BB4B3550036472C /* SystemConfiguration.framework */; };
+		C6B3808E1BB4B3700036472C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B3808D1BB4B3700036472C /* AdSupport.framework */; };
 		C6CF37621B8DF27D000E91EF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37611B8DF27D000E91EF /* Store.swift */; };
 		C6CF37661B8E3B53000E91EF /* IAPhandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF37651B8E3B53000E91EF /* IAPhandler.swift */; };
 		C6DBF6671B6FE6E8009F6634 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBF6661B6FE6E8009F6634 /* Colors.swift */; };
@@ -242,6 +244,10 @@
 		C63E6B5E1B80559900460157 /* popSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSoundEffect.mp3; sourceTree = "<group>"; };
 		C654C4AF1B98BF62000F95D4 /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		C67DE6521B90D8EE0084FD90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C6B380891BB4B3420036472C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		C6B3808B1BB4B3550036472C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C6B3808D1BB4B3700036472C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		C6B3808F1BB4B38C0036472C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C6CF37611B8DF27D000E91EF /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C6CF37651B8E3B53000E91EF /* IAPhandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPhandler.swift; sourceTree = "<group>"; };
 		C6DBF6661B6FE6E8009F6634 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -290,18 +296,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B3808E1BB4B3700036472C /* AdSupport.framework in Frameworks */,
+				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
+				C6B3808C1BB4B3550036472C /* SystemConfiguration.framework in Frameworks */,
+				C6B3808A1BB4B3420036472C /* CoreTelephony.framework in Frameworks */,
 				C62296D51B95263E0045F5B3 /* Chartboost.framework in Frameworks */,
 				C63E6B471B7DCE2B00460157 /* iAd.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
-				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
 				B77F1B3417B978D7009739AE /* OpenGLES.framework in Frameworks */,
 				B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */,
 				B77F1B3817B978D7009739AE /* AudioToolbox.framework in Frameworks */,
 				B77F1B3A17B978D7009739AE /* AVFoundation.framework in Frameworks */,
 				B77F1B3C17B978D7009739AE /* UIKit.framework in Frameworks */,
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
-				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
 				C67DE6531B90D8EE0084FD90 /* StoreKit.framework in Frameworks */,
 				B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */,
 				82814C55C7FC537283FDFF88 /* libPods.a in Frameworks */,
@@ -544,6 +552,10 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6B3808F1BB4B38C0036472C /* CoreMedia.framework */,
+				C6B3808D1BB4B3700036472C /* AdSupport.framework */,
+				C6B3808B1BB4B3550036472C /* SystemConfiguration.framework */,
+				C6B380891BB4B3420036472C /* CoreTelephony.framework */,
 				C62296D41B95263D0045F5B3 /* Chartboost.framework */,
 				C67DE6521B90D8EE0084FD90 /* StoreKit.framework */,
 				C63E6B461B7DCE2B00460157 /* iAd.framework */,
@@ -687,6 +699,8 @@
 		B77F1B2617B978D7009739AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Apportable;
 				TargetAttributes = {
@@ -1237,6 +1251,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/IkeyBenz/Downloads/AdColony-iOS-SDK-master-2",
@@ -1288,6 +1303,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/IkeyBenz/Downloads/AdColony-iOS-SDK-master-2",

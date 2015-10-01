@@ -40,7 +40,7 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
             buttonsNode.position.y = 0.87
             
         }
-        println("Store Loaded")
+        print("Store Loaded")
     }
     
     func tryAgain() {
@@ -106,8 +106,8 @@ class Store: CCScene, InAppPurchasesDelegate, sharingDelegate, ChartboostDelegat
         amountOfSwipesLabel.string = "Swipes Left: \(GameStateSingleton.sharedInstance.swipesLeft)"
     }
     func animateLabel() {
-        var delay = CCActionDelay(duration: 1)
-        var callblock = CCActionCallBlock(block: {self.animationManager.runAnimationsForSequenceNamed("Swipes Label")})
+        let delay = CCActionDelay(duration: 1)
+        let callblock = CCActionCallBlock(block: {self.animationManager.runAnimationsForSequenceNamed("Swipes Label")})
         runAction(CCActionSequence(array: [delay, callblock]))
     }
     

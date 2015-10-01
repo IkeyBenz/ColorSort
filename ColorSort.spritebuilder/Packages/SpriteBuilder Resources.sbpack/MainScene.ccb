@@ -165,7 +165,7 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>1</real>
+										<real>0.94999998807907104</real>
 										<real>0.49155059456825256</real>
 									</array>
 								</dict>
@@ -427,8 +427,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.14230883121490479</real>
-							<real>0.61462259292602539</real>
+							<real>0.58333331346511841</real>
+							<real>0.49033880233764648</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -493,6 +493,8 @@
 						<real>1</real>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -745,8 +747,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.81328284740447998</real>
-							<real>0.31037738919258118</real>
+							<real>0.23333333432674408</real>
+							<real>0.64012765884399414</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -811,8 +813,6 @@
 						<real>1</real>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1101,8 +1101,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.26226416230201721</real>
-							<real>0.49183887243270874</real>
+							<real>0.14227688312530518</real>
+							<real>0.64166665077209473</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1455,8 +1455,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.58773583173751831</real>
-							<real>0.88469618558883667</real>
+							<real>0.76480782032012939</real>
+							<real>0.28333333134651184</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -1521,8 +1521,6 @@
 						<real>1</real>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2056,8 +2054,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -2186,7 +2182,24 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array/>
+				<array>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
+						<real>1.7333333492279053</real>
+						<key>type</key>
+						<integer>12</integer>
+						<key>value</key>
+						<array>
+							<string>hello</string>
+							<integer>1</integer>
+						</array>
+					</dict>
+				</array>
 				<key>type</key>
 				<integer>11</integer>
 			</dict>
@@ -2199,7 +2212,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>1.7000000476837158</real>
+			<real>0.3333333432674408</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -2214,6 +2227,42 @@
 				<array/>
 				<key>type</key>
 				<integer>10</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>12</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>10</real>
+			<key>name</key>
+			<string>Untitled Timeline</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.1666666716337204</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>1</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>isExpanded</key>
+				<false/>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>11</integer>
 			</dict>
 		</dict>
 	</array>

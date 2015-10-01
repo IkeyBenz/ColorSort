@@ -10,7 +10,8 @@ import Foundation
 import GameKit
 import AudioToolbox
 
-class Gameplay: CCScene, intersitialDelegate {
+
+class Gameplay: CCScene {
     
     // COLOR COLUMNS
     weak var yellowColumn: CCNodeColor!
@@ -42,7 +43,6 @@ class Gameplay: CCScene, intersitialDelegate {
     weak var pausedButton: CCButton!
     weak var restartButton: CCButton!
     
-    
     // BOOLEANS
     var tutorialFinished: Bool = false
     var difficultyDidChange: Bool = false
@@ -50,7 +50,7 @@ class Gameplay: CCScene, intersitialDelegate {
     var gameoverLabelFell: Bool = false
     var gameover: Bool = false
     var playerUsedSwipe: Bool = false
-    var didntTryToLoadInterstitial: Bool = true
+
     
     var distanceBetweenColors: CCTime = 1 {
         didSet {
@@ -63,7 +63,7 @@ class Gameplay: CCScene, intersitialDelegate {
     var slowMoActivated: Bool = false {
         didSet {
             if slowMoActivated {
-                println("slow mo should be activated")
+                print("slow mo should be activated")
                 unschedule("spawnColors")
                 colorSpeed = 4
                 distanceBetweenColors = 0.9
@@ -72,8 +72,8 @@ class Gameplay: CCScene, intersitialDelegate {
                     color.stopAllActions()
                     color.move(colorSpeed, screenHeight: -CCDirector.sharedDirector().viewSize().height)
                 }
-                var delay = CCActionDelay(duration: 6)
-                var setSlowMoToFalse = CCActionCallBlock(block: {self.slowMoActivated = false})
+                let delay = CCActionDelay(duration: 6)
+                let setSlowMoToFalse = CCActionCallBlock(block: {self.slowMoActivated = false})
                 runAction(CCActionSequence(array: [delay, setSlowMoToFalse]))
             } else if !slowMoActivated {
                 updateDifficulty()
@@ -103,12 +103,14 @@ class Gameplay: CCScene, intersitialDelegate {
         }
     }
     
-    
+    func esdfgh() {
+        
+    }
     
     // Generates a random color
     func randomColor() -> CCColor {
         var ikeysColor: CCColor!
-        var rand = arc4random_uniform(5)
+        let rand = arc4random_uniform(5)
         if rand == 0 {
             ikeysColor = CCColor(ccColor3b: ccColor3B(r: 255, g: 214, b: 75))
         } else if rand == 1 {
@@ -126,9 +128,9 @@ class Gameplay: CCScene, intersitialDelegate {
     // Generate random x position for the colors
     func randomX() -> CGFloat {
         var xPosition: CGFloat!
-        var randomNumber = arc4random_uniform(5)
-        var width = CCDirector.sharedDirector().viewSize().width
-        var widthOffset = width / 10
+        let randomNumber = arc4random_uniform(5)
+        let width = CCDirector.sharedDirector().viewSize().width
+        let widthOffset = width / 10
         if randomNumber == 0 {
             xPosition = widthOffset
         } else if randomNumber == 1 {
@@ -147,7 +149,7 @@ class Gameplay: CCScene, intersitialDelegate {
     func spawnColors() {
         if tutorialFinished {
             if !gameover {
-                var nextColor = CCBReader.load("ColorBox") as! Colors
+                let nextColor = CCBReader.load("ColorBox") as! Colors
                 nextColor.colorNode.color = randomColor()
                 colorArray.append(nextColor)
                 colorSpawnNode.addChild(nextColor)
@@ -160,9 +162,7 @@ class Gameplay: CCScene, intersitialDelegate {
     
     func didLoadFromCCB() {
         iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
-        iAdHandler.sharedInstance.loadInterstitialAd()
         iAdHandler.sharedInstance.displayBannerAd()
-        iAdHandler.sharedInstance.adDelegate = self
         userInteractionEnabled = true
         highScoreLabel.string = String("Highscore: \(GameStateSingleton.sharedInstance.highscore)")
         swipesLeftIndicator.string = "Swipes Left: \(swipesLeft)"
@@ -176,8 +176,14 @@ class Gameplay: CCScene, intersitialDelegate {
             tutorialFinished = true
         }
         schedule("spawnColors", interval: CCTime(distanceBetweenColors))
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
-        AVAudioSession.sharedInstance().setActive(true, error: nil)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+        } catch _ {
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch _ {
+        }
         if GameStateSingleton.sharedInstance.backgroundMusicEnabled {
             audio.playBg("A Journey Awaits.mp3", loop: true)
         }
@@ -190,7 +196,7 @@ class Gameplay: CCScene, intersitialDelegate {
             if color.position.y < (CCDirector.sharedDirector().viewSize().height / 100) * 12 {
                 checkForColor(color)
                 color.removeFromParent()
-                colorArray.removeAtIndex(find(colorArray, color)!)
+                colorArray.removeAtIndex(colorArray.indexOf(color)!)
             }
         }
         
@@ -201,22 +207,11 @@ class Gameplay: CCScene, intersitialDelegate {
             for color in colorArray {
                 color.removeFromParent()
             }
-            if GameStateSingleton.sharedInstance.gamesPlayed > 3 {
-                if didntTryToLoadInterstitial {
-                    iAdHandler.sharedInstance.loadInterstitialAd()
-                    var delay = CCActionDelay(duration: 1)
-                    var callblock = CCActionCallBlock(block: {iAdHandler.sharedInstance.displayInterstitialAd()})
-                    runAction(CCActionSequence(array: [delay ,callblock]))
-                    didntTryToLoadInterstitial = false
-                }
-            }
             
             if !gameoverLabelFell {
                 animationManager.runAnimationsForSequenceNamed("Game Over")
-                GameStateSingleton.sharedInstance.gamesPlayed += 1
-                println(GameStateSingleton.sharedInstance.gamesPlayed)
-                var takePicture = CCActionCallBlock(block: {GameStateSingleton.sharedInstance.screenShot = self.takeScreenshot()})
-                var delay = CCActionDelay(duration: 1)
+                let takePicture = CCActionCallBlock(block: {GameStateSingleton.sharedInstance.screenShot = self.takeScreenshot()})
+                let delay = CCActionDelay(duration: 1)
                 runAction(CCActionSequence(array: [delay, takePicture]))
                 gameoverLabelFell = true
             }
@@ -283,12 +278,13 @@ class Gameplay: CCScene, intersitialDelegate {
             color.position.x = screenWidthPercent * 70
         }
         
+        
     }
     // Change opacity of columns when colors are dropped in them
     func changeOpacity(colornode: CCNodeColor) {
         colornode.opacity = 0.9
-        var delay = CCActionDelay(duration: CCTime(0.15))
-        var callblock = CCActionCallBlock(block: {colornode.opacity = 0.75})
+        let delay = CCActionDelay(duration: CCTime(0.15))
+        let callblock = CCActionCallBlock(block: {colornode.opacity = 0.75})
         runAction(CCActionSequence(array: [delay, callblock]))
     }
     // Checks to see if the colors match the column they're in, if not, gameover; if so, add a point to score.
@@ -401,14 +397,14 @@ class Gameplay: CCScene, intersitialDelegate {
                             animationManager.runAnimationsForSequenceNamed("Slow Mo Label")
                         } else {
                             notEnoughSwipesLabel.visible = true
-                            var delay = CCActionDelay(duration: 2)
-                            var callblock = CCActionCallBlock(block: {self.notEnoughSwipesLabel.visible = false})
+                            let delay = CCActionDelay(duration: 2)
+                            let callblock = CCActionCallBlock(block: {self.notEnoughSwipesLabel.visible = false})
                             runAction(CCActionSequence(array: [delay, callblock]))
                         }
                     } else {
                         slowMoAlreadyActivatedLabel.visible = true
-                        var delay = CCActionDelay(duration: 2)
-                        var callblock = CCActionCallBlock(block: {self.slowMoAlreadyActivatedLabel.visible = false})
+                        let delay = CCActionDelay(duration: 2)
+                        let callblock = CCActionCallBlock(block: {self.slowMoAlreadyActivatedLabel.visible = false})
                         runAction(CCActionSequence(array: [delay, callblock]))
                     }
                 }
@@ -462,10 +458,7 @@ class Gameplay: CCScene, intersitialDelegate {
         CCDirector.sharedDirector().view.removeGestureRecognizer(swipeUp)
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("Store"))
     }
-    func interstitialDidLoad() {
-        GameStateSingleton.sharedInstance.gamesPlayed = 0
-        iAdHandler.sharedInstance.hideBannerAd()
-    }
+    
     
     // CALLBACKS
     func startGame() {
@@ -484,13 +477,13 @@ class Gameplay: CCScene, intersitialDelegate {
 // GAMECENTER
 extension Gameplay: GKGameCenterControllerDelegate {
     func showLeaderboard() {
-        var viewController = CCDirector.sharedDirector().parentViewController!
-        var gameCenterViewController = GKGameCenterViewController()
+        let viewController = CCDirector.sharedDirector().parentViewController!
+        let gameCenterViewController = GKGameCenterViewController()
         gameCenterViewController.gameCenterDelegate = self
         viewController.presentViewController(gameCenterViewController, animated: true, completion: nil)
         audio.stopBg()
     }
-    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     func setUpGameCenter() {

@@ -40,12 +40,6 @@ class GameStateSingleton: NSObject {
         }
     }
     
-    var gamesPlayed: Int = NSUserDefaults.standardUserDefaults().integerForKey("GamesPlayed") {
-        didSet {
-            NSUserDefaults.standardUserDefaults().setInteger(gamesPlayed, forKey: "GamesPlayed")
-        }
-    }
-    
     var swipeUpLabelWasShown: Bool = NSUserDefaults.standardUserDefaults().boolForKey("SwipeUpLabelWasShown") {
         didSet {
             NSUserDefaults.standardUserDefaults().setBool(swipeUpLabelWasShown, forKey: "SwipeUpLabelWasShown")

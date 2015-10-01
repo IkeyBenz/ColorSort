@@ -4,12 +4,15 @@ import GameKit
 
 
 class MainScene: CCNode {
-    func didLoadFromCCB() {
+    override func onEnter() {
         iAdHandler.sharedInstance.loadAds(bannerPosition: .Bottom)
         setUpGameCenter()
     }
     func play() {
         CCDirector.sharedDirector().presentScene(CCBReader.loadAsScene("Gameplay"))
+    }
+    func hello() {
+        print("hello")
     }
 }
 
@@ -17,12 +20,12 @@ class MainScene: CCNode {
 
 extension MainScene: GKGameCenterControllerDelegate {
     func showLeaderboard() {
-        var viewController = CCDirector.sharedDirector().parentViewController!
-        var gameCenterViewController = GKGameCenterViewController()
+        let viewController = CCDirector.sharedDirector().parentViewController!
+        let gameCenterViewController = GKGameCenterViewController()
         gameCenterViewController.gameCenterDelegate = self
         viewController.presentViewController(gameCenterViewController, animated: true, completion: nil)
     }
-    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     func setUpGameCenter() {
